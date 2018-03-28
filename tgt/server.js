@@ -17,6 +17,7 @@ module.exports = {
     app.use(compression());
     app.set('view engine', 'ejs');
     app.use('/', publicPath);
+    app.use('/', api.devices);
     app.use('/tgt', express.static(__dirname));
     app.get('/*', (req, res) => {
       res.sendFile(path.join(__dirname, '/index.html'))

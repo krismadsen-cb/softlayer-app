@@ -1,5 +1,5 @@
 const Server = require('./server.js')
-
+const db = require('../srv/db')
 const port = (process.env.PORT || 3000)
 const app = Server.app()
 
@@ -10,13 +10,10 @@ const app = Server.app()
   const config = require('../webpack.deployment.config.js')
   const compiler = webpack(config)
 
-    console.log(config.output.path)
-  app.use(webpackHotMiddleware(compiler, {
-    publicPath: config.output.path
-  }))
+  app.use(webpackHotMiddleware(compiler))
   app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
-    publicPath: config.output.path
+    publicPath: config.output.publicPathdist
   }))
 
 
