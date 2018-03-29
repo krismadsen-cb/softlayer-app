@@ -1,6 +1,5 @@
 var mysql = require('mysql');
 var config = require('../config/.db');
-console.log(config)
 
 var db = mysql.createConnection({
   host: config.host,
