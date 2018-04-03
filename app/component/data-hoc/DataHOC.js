@@ -14,7 +14,7 @@ const DataHOC = (endpoints) => {
       }
       fetchData = (endpoints) => {
         for(let endpoint of endpoints) {
-          fetch(endpoint)
+          fetch(endpoint, {credentials: 'include'})
           .then((response) => {return response.json()})
           .then((json) => { this.update(endpoint, json) })
         }
