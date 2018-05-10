@@ -1,0 +1,41 @@
+.navbar-wrapper {
+  height: 60px;
+  background-color: #616161;
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 99;
+}
+
+.navbar {
+  height: 60px;
+  background-color: #616161;
+  position: sticky;
+  top: 0;
+  display: table;
+  vertical-align: middle;
+  z-index: 101;
+}
+
+.nav-item {
+  height: 100%;
+  text-decoration: none!important;
+  color: #F5F5F5;
+  vertical-align: middle;
+  display: table-cell;
+  text-align: center;
+  padding: .2em .5em;
+  width: 120px;
+}
+
+.nav-item:visited {
+  color: #F5F5F5;
+}
+
+.nav-item:hover {
+  background-color: #4FC3F7;
+}
+
+.nav-active {
+  background-color: #4FC3F7;
+}

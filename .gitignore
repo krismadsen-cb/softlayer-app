@@ -1,2 +1,8 @@
-.db.js
 *.secrets*
+.env
+*.crt
+*.key
+mysql/data
+*.pyc
+.remote-sync.json
+web/node_modules
