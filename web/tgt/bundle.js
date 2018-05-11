@@ -4325,7 +4325,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var DevicesInstance = (0, _dataHoc2.default)([_config2.default.api.devices])((0, _layoutHoc2.default)(_devices2.default));
 var EventsInstance = (0, _dataHoc2.default)([_config2.default.api.events])((0, _layoutHoc2.default)(_events2.default));
-var IpsInstance = (0, _layoutHoc2.default)(_ips2.default);
+var IpsInstance = (0, _dataHoc2.default)(['/api' + location.pathname])((0, _layoutHoc2.default)(_ips2.default));
 var SecurityInstance = (0, _dataHoc2.default)([_config2.default.api.security.assets])((0, _layoutHoc2.default)(_security2.default));
 var SubnetsInstance = (0, _dataHoc2.default)([_config2.default.api.subnets])((0, _layoutHoc2.default)(_subnets2.default));
 var TicketsInstance = (0, _dataHoc2.default)([_config2.default.api.tickets])((0, _layoutHoc2.default)(_tickets2.default));
@@ -4344,7 +4344,7 @@ var renderApp = function renderApp() {
         } }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/devices', exact: true, component: DevicesInstance }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/events', exact: true, component: EventsInstance }),
-      _react2.default.createElement(_reactRouterDom.Route, { path: '/ips/:subnetId', exact: true, component: (0, _dataHoc2.default)(['/api' + location.pathname])(IpsInstance) }),
+      _react2.default.createElement(_reactRouterDom.Route, { path: '/ips/:subnetId', exact: true, component: IpsInstance }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/security', exact: true, component: SecurityInstance }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/subnets', exact: true, component: SubnetsInstance }),
       _react2.default.createElement(_reactRouterDom.Route, { path: '/tickets', exact: true, component: TicketsInstance })
@@ -31522,6 +31522,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(0);
 
 var _react2 = _interopRequireDefault(_react);
@@ -31544,19 +31546,40 @@ var _config2 = _interopRequireDefault(_config);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var Ip = function Ip(props) {
-  return _react2.default.createElement(
-    'div',
-    { style: { padding: '10px 10px' } },
-    _react2.default.createElement(_table2.default, {
-      showPageSizeOptions: false,
-      defaultPageSize: 25,
-      filterable: true,
-      defaultFilterMethod: _util2.default.Filter.by.contains,
-      data: props.data[_config2.default.api.ips + '/' + props.match.params.subnetId]
-    })
-  );
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Ip = function (_React$Component) {
+  _inherits(Ip, _React$Component);
+
+  function Ip(props) {
+    _classCallCheck(this, Ip);
+
+    return _possibleConstructorReturn(this, (Ip.__proto__ || Object.getPrototypeOf(Ip)).call(this, props));
+  }
+
+  _createClass(Ip, [{
+    key: 'render',
+    value: function render() {
+      return _react2.default.createElement(
+        'div',
+        { style: { padding: '10px 10px' } },
+        _react2.default.createElement(_table2.default, {
+          showPageSizeOptions: false,
+          defaultPageSize: 25,
+          filterable: true,
+          defaultFilterMethod: _util2.default.Filter.by.contains,
+          data: this.props.data[_config2.default.api.ips + '/' + this.props.match.params.subnetId]
+        })
+      );
+    }
+  }]);
+
+  return Ip;
+}(_react2.default.Component);
 
 exports.default = Ip;
 

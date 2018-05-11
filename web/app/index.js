@@ -16,7 +16,7 @@ import config from './config';
 
 const DevicesInstance = DataHOC([config.api.devices])(LayoutHOC(Devices));
 const EventsInstance = DataHOC([config.api.events])(LayoutHOC(Events));
-const IpsInstance = LayoutHOC(Ips);
+const IpsInstance = DataHOC(['/api' + location.pathname])(LayoutHOC(Ips));
 const SecurityInstance = DataHOC([config.api.security.assets])(LayoutHOC(Security));
 const SubnetsInstance = DataHOC([config.api.subnets])(LayoutHOC(Subnets));
 const TicketsInstance = DataHOC([config.api.tickets])(LayoutHOC(Tickets));
@@ -30,7 +30,7 @@ const renderApp = () => {
         <Route path="/" exact={true} render={() => <Redirect to="/devices"/>} />
         <Route path="/devices" exact={true} component={DevicesInstance} />
         <Route path="/events" exact={true} component={EventsInstance} />
-        <Route path="/ips/:subnetId" exact={true} component={DataHOC(['/api' + location.pathname])(IpsInstance)} />
+        <Route path="/ips/:subnetId" exact={true} component={IpsInstance} />
         <Route path="/security" exact={true} component={SecurityInstance} />
         <Route path="/subnets" exact={true} component={SubnetsInstance} />
         <Route path="/tickets" exact={true} component={TicketsInstance} />
