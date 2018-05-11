@@ -8,10 +8,7 @@ services:
       - "443:443"
     env_file:
       - .env
-    restart_policy:
-      delay: 5s
-      max_attempts: 3
-      window: 120s
+    restart: always
   softlayer-sql:
     build: ./mysql
     hostname: softlayer-sql
@@ -21,10 +18,7 @@ services:
       - "3306:3306"
     env_file:
       - .env
-    restart_policy:
-      delay: 5s
-      max_attempts: 3
-      window: 120s
+    restart: always
   softlayer:
     build: ./web
     hostname: softlayer
@@ -33,10 +27,7 @@ services:
       - /usr/src/app/node_modules
     env_file:
       - .env
-    restart_policy:
-      delay: 5s
-      max_attempts: 3
-      window: 120s
+    restart: always
   python:
     build: ./python
     hostname: python
@@ -44,7 +35,4 @@ services:
       - ./python:/opt
     env_file:
       - .env
-    restart_policy:
-      delay: 5s
-      max_attempts: 3
-      window: 120s
+    restart: always

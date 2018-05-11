@@ -18,3 +18,7 @@ const app = Server.app()
 
 app.listen(port)
 console.log(`Listening at http://localhost:${port}`)
+//Apparently the mysql docker kills idle connections.  hack to keep it alive - ping it every 15 minutes.
+setInterval(function () {
+  db.query('SELECT 1');
+}, 60000*15)
