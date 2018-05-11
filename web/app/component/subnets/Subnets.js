@@ -5,7 +5,7 @@ import Table from '../table';
 import util from '../../util';
 import config from '../../config';
 
-import './table-override.css';
+import styles from './react-table-override.css';
 
 class Subnets extends React.Component {
   constructor(props) {
@@ -22,7 +22,7 @@ class Subnets extends React.Component {
 
   render() {
     return (
-      <div style={{padding: '10px 10px'}}>
+      <div style={{padding: '10px 10px'}} className={'subnet'}>
         <Table
           showPageSizeOptions={false}
           defaultPageSize={25}
