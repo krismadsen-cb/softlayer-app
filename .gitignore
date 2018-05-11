@@ -6,3 +6,4 @@ mysql/data
 *.pyc
 .remote-sync.json
 web/node_modules
+test.py

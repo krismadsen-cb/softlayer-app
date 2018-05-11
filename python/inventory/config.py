@@ -86,3 +86,6 @@ now = now.strftime("%m/%d/%Y")
 eventMask = "mask[endDate,id,modifyDate,notificationOccurrenceEventType[keyName],recoveryTime,startDate,statusCode[name],subject,summary]"
 eventFilterEndDate = {"endDate": {"operation": "greaterThanDate", "options": [{"name": "date", "value": [now]}]}, "statusCode": {"keyName": {"operation": "in", "options":[{"name": "data", "value": ["ACTIVE", "PUBLISHED"]}]}}}
 eventFilterNoEndDate = {"endDate": {"operation": 'is null'}, "statusCode": {"keyName": {"operation": "in", "options":[{"name": "data", "value": ["ACTIVE", "PUBLISHED"]}]}}}
+
+
+ipMask = 'mask[isNetwork,isBroadcast,isGateway,subnetId,ipAddress,id,isReserved,note]'

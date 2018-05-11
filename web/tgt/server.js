@@ -19,7 +19,9 @@ module.exports = {
     app.use('/', publicPath);
     app.use('/', api.devices);
     app.use('/', api.events);
+    app.use('/', api.ips);
     app.use('/', api.security);
+    app.use('/', api.subnets);
     app.use('/', api.tickets);
     app.use('/tgt', express.static(__dirname));
     app.get('/*', (req, res) => {

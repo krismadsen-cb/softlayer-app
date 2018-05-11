@@ -39,6 +39,14 @@ class Header extends React.Component {
           </NavLink>
           <NavLink
             exact
+            to={'/subnets'}
+            className={'nav-item'}
+            activeClassName={'nav-item nav-active'}
+            >
+            Subnets
+          </NavLink>
+          <NavLink
+            exact
             to={'/tickets'}
             className={'nav-item'}
             activeClassName={'nav-item nav-active'}

@@ -100,7 +100,7 @@ def get_inventory(org):
             cursor.execute(insertSql, values)
             cursor.execute("update `sl_servers` set `monthly_cost` = %s where `id` = %s", [monthly_fee, server['id']])
     except SoftLayer.SoftLayerAPIError as e:
-        print("Error. %s" % e);
+        print("Error. %s" % e)
     try:
         vsis = accountClient.getVirtualGuests(mask=detailMaskVsi)
         keys = dict()
@@ -121,7 +121,7 @@ def get_inventory(org):
             print "%s" % (insertSql)
             print "%s" % (vmInfo)
     except SoftLayer.SoftLayerAPIError as e:
-        print("Error. %s" % e);
+        print("Error. %s" % e)
 
 def get_tickets():
     try:
@@ -134,7 +134,7 @@ def get_tickets():
             insertSql = generateInsertSql(ticInfo, 'sl_tickets', values, doMap=False)
             cursor.execute(insertSql, values)
     except SoftLayer.SoftLayerAPIError as e:
-        print("Error. %s" % e);
+        print("Error. %s" % e)
 
 def get_events():
     try:
@@ -157,7 +157,27 @@ def get_events():
             insertSql = generateInsertSql(eventInfo, 'sl_events', values, doMap=False)
             cursor.execute(insertSql, values)
     except SoftLayer.SoftLayerAPIError as e:
-        print("Error. %s" % e);
+        print("Error. %s" % e)
+
+def get_subnets():
+    try:
+        subnets = accountClient.getSubnets()
+        ipMask = config.ipMask
+        for subnet in subnets:
+            subnetInfo = flatten(subnet)
+            keys = extractKeys(subnetInfo)
+            values = []
+            insertSql = generateInsertSql(subnetInfo, 'sl_subnets', values, doMap=False)
+            cursor.execute(insertSql, values)
+            ips = client['SoftLayer_Network_Subnet'].getIpAddresses(id=subnet['id'],mask=ipMask)
+            for ip in ips:
+                ipInfo = flatten(ip)
+                keys = extractKeys(subnetInfo)
+                values = []
+                insertSql = generateInsertSql(ipInfo, 'sl_ips', values, doMap=False)
+                cursor.execute(insertSql, values)
+    except SoftLayer.SoftLayerAPIError as e:
+        print("Error. %s" % e)
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
@@ -178,6 +198,7 @@ if __name__ == '__main__':
     get_inventory("")
     get_tickets()
     get_events()
+    get_subnets()
     conn.commit()
     conn.close()
     pass

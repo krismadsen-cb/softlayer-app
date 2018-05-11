@@ -110,3 +110,35 @@ CREATE TABLE IF NOT EXISTS ivm_assets(
   tags TEXT,
   PRIMARY KEY (id)
 );
+CREATE TABLE IF NOT EXISTS sl_subnets(
+  modifyDate TEXT,
+  version INT,
+  networkVlanId INT,
+  isCustomerRoutable VARCHAR(8),
+  usableIpAddressCount VARCHAR(25),
+  id INT,
+  note TEXT,
+  netmask VARCHAR(128),
+  broadcastAddress VARCHAR(18),
+  isCustomerOwned VARCHAR(8),
+  sortOrder VARCHAR(5),
+  networkIdentifier VARCHAR(64),
+  totalIpAddresses VARCHAR(25),
+  cidr INT,
+  gateway VARCHAR(64),
+  addressSpace TEXT,
+  subnetType TEXT,
+  PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS sl_ips(
+  isNetwork VARCHAR(8),
+  isBroadcast VARCHAR(8),
+  isGateway VARCHAR(8),
+  note TEXT,
+  subnetId INT,
+  ipAddress VARCHAR(64),
+  id INT,
+  isReserved VARCHAR(18),
+  PRIMARY KEY (id),
+  INDEX (subnetId)
+);
