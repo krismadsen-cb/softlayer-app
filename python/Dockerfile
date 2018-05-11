@@ -7,4 +7,4 @@ RUN crontab /etc/cron.d/crontab
 RUN pip install SoftLayer
 RUN pip install pymysql
 
-CMD ["tail", "-f", "/dev/null"]
+CMD ["/usr/sbin/crond"]
