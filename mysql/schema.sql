@@ -73,6 +73,7 @@ CREATE TABLE IF NOT EXISTS sl_servers(
   hardwareFunctionDescription text,
   gateway VARCHAR(20),
   monthly_cost FLOAT,
+  lastPatch text,
   PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS sl_tickets(
