@@ -19,6 +19,7 @@ class Devices extends React.Component {
           defaultPageSize={25}
           filterable
           defaultFilterMethod={util.Filter.by.contains}
+          defaultSorted={[{'id': 'hostname', 'desc': false}]}
           data={this.props.data[config.api.devices]}
         />
       </div>

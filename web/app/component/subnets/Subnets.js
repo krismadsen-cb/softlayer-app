@@ -28,6 +28,7 @@ class Subnets extends React.Component {
           defaultPageSize={25}
           filterable
           getTrProps={this.clickRow}
+          defaultSorted={[{id: 'networkIdentifier', desc: false}]}
           defaultFilterMethod={util.Filter.by.contains}
           data={this.props.data[config.api.subnets]}
         />

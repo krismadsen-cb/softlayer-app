@@ -3,6 +3,8 @@ import ReactTable from 'react-table';
 import 'react-table/react-table.css';
 import _ from 'underscore';
 
+import util from '../../util';
+
 const Table = (props) => {
   let columns = []
   let show;
@@ -28,12 +30,22 @@ const Table = (props) => {
       } else {
         width = Math.max(12*val.length, 180);
       }
-      columns.push({
-        'accessor': val,
-        'Header': val.charAt(0).toUpperCase() + val.slice(1),
-        'width': width,
-        'show': show
-      });
+      if(['ip', 'netmask', 'gateway', 'networkIdentifier', 'ipAddress', 'publicIp'].includes(val)) {
+        columns.push({
+          'accessor': val,
+          'Header': val.charAt(0).toUpperCase() + val.slice(1),
+          'width': width,
+          'show': show,
+          'sortMethod': util.Sort.by.ip
+        })
+      } else {
+        columns.push({
+          'accessor': val,
+          'Header': val.charAt(0).toUpperCase() + val.slice(1),
+          'width': width,
+          'show': show
+        });
+      }
     })
   }
   const {data, ...otherProps} = props;

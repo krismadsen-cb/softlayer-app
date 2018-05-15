@@ -1,7 +1,9 @@
-import Filter from './Filter'
+import Filter from './Filter';
+import Sort from './Sort';
 
 var util = {
-  'Filter': Filter
+  'Filter': Filter,
+  'Sort': Sort
 };
 
 export default util;

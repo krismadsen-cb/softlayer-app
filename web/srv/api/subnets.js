@@ -3,7 +3,7 @@ var express = require('express');
 var router = express.Router();
 
 router.get('/api/subnets', function(req, res, next) {
-  db.query("Select id,networkIdentifier,cidr,subnetType,addressSpace,note,networkVlanId,netmask,gateway,modifyDate,totalIpAddresses,usableIpAddressCount from sl_subnets", (err, rows, fields) => {
+  db.query("Select id,networkIdentifier,netmask,gateway,vlanName,subnetType,addressSpace,note,totalIpAddresses,usableIpAddressCount from sl_subnets", (err, rows, fields) => {
     return res.json(rows);
   });
 });

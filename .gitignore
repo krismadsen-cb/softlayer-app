@@ -7,5 +7,5 @@ mysql/data
 .remote-sync.json
 web/node_modules
 test.py
-bundle.js
+bundle.jsgit add 
 bundle.js.map

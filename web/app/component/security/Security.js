@@ -19,6 +19,7 @@ class Security extends React.Component {
           defaultPageSize={25}
           filterable
           defaultFilterMethod={util.Filter.by.contains}
+          defaultSorted={[{id: 'hostName', desc: false}]}
           data={this.props.data[config.api.security.assets]}
         />
       </div>

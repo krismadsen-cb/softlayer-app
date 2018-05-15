@@ -16,6 +16,15 @@ detailMaskBms = config.detailMaskBms
 detailMaskVsi = config.detailMaskVsi
 ticketMask    = config.ticketMask
 
+def find(value, test, key, search, default):
+    for obj in test:
+        if obj[key] == value:
+            try:
+                return str(obj[search])
+            except:
+                return default
+    return default
+
 def columnMappingLookup(col):
     if col in columnMapping.keys():
         if columnMapping[col] == 'NA':
@@ -162,17 +171,18 @@ def get_events():
 def get_subnets():
     try:
         subnets = accountClient.getSubnets()
+        vlans = accountClient.getNetworkVlans()
         ipMask = config.ipMask
         for subnet in subnets:
-            subnetInfo = flatten(subnet)
-            keys = extractKeys(subnetInfo)
             values = []
-            insertSql = generateInsertSql(subnetInfo, 'sl_subnets', values, doMap=False)
+            vlanName = find(subnet['networkVlanId'], vlans, 'id', 'name', '')
+            subnet['vlanName'] = vlanName
+            del subnet['networkVlanId']
+            insertSql = generateInsertSql(subnet, 'sl_subnets', values, doMap=False)
             cursor.execute(insertSql, values)
             ips = client['SoftLayer_Network_Subnet'].getIpAddresses(id=subnet['id'],mask=ipMask)
             for ip in ips:
                 ipInfo = flatten(ip)
-                keys = extractKeys(subnetInfo)
                 values = []
                 insertSql = generateInsertSql(ipInfo, 'sl_ips', values, doMap=False)
                 cursor.execute(insertSql, values)

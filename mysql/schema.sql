@@ -113,7 +113,7 @@ CREATE TABLE IF NOT EXISTS ivm_assets(
 CREATE TABLE IF NOT EXISTS sl_subnets(
   modifyDate TEXT,
   version INT,
-  networkVlanId INT,
+  vlanName TEXT,
   isCustomerRoutable VARCHAR(8),
   usableIpAddressCount VARCHAR(25),
   id INT,
