@@ -5,6 +5,7 @@ console.log(__dirname)
 module.exports = {
   devtool: 'source-map',
   entry: [
+    'babel-polyfill',
     './app/index.js'
   ],
   output: {
