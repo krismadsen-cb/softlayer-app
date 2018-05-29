@@ -142,3 +142,14 @@ CREATE TABLE IF NOT EXISTS sl_ips(
   PRIMARY KEY (id),
   INDEX (subnetId)
 );
+CREATE TABLE IF NOT EXISTS linux_patching(
+  ip TEXT,
+  fqdn TEXT,
+  hostname TEXT,
+  os TEXT,
+  server_type VARCHAR(45),
+  environment VARCHAR(45),
+  patchFlags VARCHAR(500),
+  lastPatch datetime,
+  INDEX (hostname)
+);
