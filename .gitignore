@@ -9,3 +9,4 @@ web/node_modules
 test.py
 *bundle.js
 *bundle.js.map
+ldap.conf
